@@ -7,5 +7,7 @@ gem "sinatra-activerecord"
 gem "rake"
 gem "sqlite3"
 gem "sinatra-flash"
+gem "jquery-rails"
+
 # sinatra-flash is to add a flash message like 'oops, could not find that username. try again or click forgot username'
  # then we can make a forgot username page that checks the username against all the users
