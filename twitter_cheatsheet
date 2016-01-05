@@ -1,0 +1,91 @@
+class User < ActiveRecord::Base
+  has_many :posts
+end
+
+Class Post < ActiveRecord::Base
+belongs_to :user
+end
+
+sign up: creating a new user
+sign in: starting a session
+sign out: ending a session
+edit their account details: find a record and use the dot syntax to update
+delete their account: retrieve the user .delete/.destroy on the instance OR user.delete
+
+t = Tweet.find(3)
+returns the tweet with an id of 3
+calling a method on the tweet which is going to fetch id 3 from the tweets database
+t.id
+t.status
+t.zombie
+
+w = Weapon.find(1)
+it would go into the weapons table and find the one with the id of one right?
+
+read -
+Tweet.where(zombie: "ash").order(:status).limit(10)
+
+        use this to print the most 10 recent posts on each page
+
+           Tweet.find(3)
+                Tweet.find(3,4,5)
+              Tweet.count
+                  Tweet.order(:zombie)
+                  Tweet.limit(10)
+                  Tweet.where(zombie: "ash")
+
+                  Tweet.where(zombie: "ash").order(:status).limit(10)
+
+create - t= Tweet.new
+    t.stauts
+    t.save
+
+      that's basic - lets step it up
+      the set-up: TableName.create(hash)
+    Tweet.create(status: "I'm excited!",
+                zombie: "Kayla")
+
+
+update -
+    t=Tweet.find
+    t.zombie = "zeee"
+    t.save
+
+    or
+
+    t = Tweet.find(2)
+    t.update(
+    status: "yoga!"
+    zombie: "mackenzie"
+    )
+
+
+
+Tweet.where(zombie: "ash").first
+        use this in the gallery of followers and following
+
+delete -
+  Tweet.find(2).destroy
+  Tweet.destroy_all
+
+
+____
+
+so here's where relationships come into play
+you have two different databases or tables - one for Tweeets which has the zombie, the message, and the id for that message. and one table for the Zombies and their personal information which has their name,  graveyard and the id for each Zombie.
+
+ash = Zombie.find(1)
+
+instance of the Zombie class with the values of Zombie ash
+
+t = Tweet.create(status: "your eyelids taste ike bacon."
+                zombie :ash)
+sending in the zombie object and rails does the mapping
+  so now we can make sure it saved it
+  ash.tweets.count
+  ash.tweets = returns an array of all her tweets
+now, if we look back at the table we can see it added in a new tweet for ash
+  can we find it another way?
+  t = Tweet.find(5) => <Tweet id: 5, status: "whyyyyyyy", zombie_id: 1>
+  t.zombie => <Zombie id: 1, name: "Ash", graveyard: "St. Louis">
+  t.zombie.name => "Ash"33
